@@ -1,16 +1,16 @@
-#' Internal Rate of Return
+#' IRR – Internal Rate of Return
 #'
-#' Rate, at which all cashflows will discount to exactly zero.
+#' Rate at which all cashflows will be discounted to exactly zero.
 #'
-#' @param cashflows Cash flows, as a vector
-#' @param dates Value dates for the cashflows vector
-#' @param convention Interest Rate convention; default is ACT/365
-#' @param silent should warning messages be suppressed? Default is no.
+#' @inheritParams npv
+#'
+#' @return Internal Rate of Return - as a fraction, per annum
+#'
+#' @seealso npv
+#'
+#' @export
 #'
 #' @importFrom stats uniroot
-#'
-#' @return IRR - as a fraction, per annum.
-#' @export
 #'
 #' @examples
 #' irr(
@@ -33,7 +33,7 @@ irr <- function(cashflows, dates, convention = "ACT/365", silent = FALSE) {
 
   # let the uniroot begin!
   result <- uniroot(
-    f = npv, interval = c(0, 1), tol = 1e-9,
+    f = npv, interval = c(0, 1), tol = 1e-7,
     cashflows = cashflows,
     dates = dates,
     convention = convention

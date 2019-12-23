@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "jindra.lacko@gmail.com")
 Description:
-   A set of functions addressing basic Time Value of Money use cases.
+   A set of functions addressing basic Time Value of Money calculation use cases.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
