@@ -26,3 +26,6 @@ Day Count Fraction - difference in days divided by days per year
 \description{
 DCF – Day Count Fraction
 }
+\examples{
+dcf(as.Date("2019-01-01"), as.Date("2019-01-31"), convention = "30/360")
+}

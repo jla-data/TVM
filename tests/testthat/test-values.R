@@ -15,6 +15,21 @@ test_that("easy date", {
   )
 })
 
+test_that("period ending on 31th", {
+  expect_equal(
+    dcf(date_from = as.Date("2009-02-28"), date_to = as.Date("2009-08-31"), convention = "ACT/360"),
+    184/ 360
+  )
+  expect_equal(
+    dcf(date_from = as.Date("2009-02-28"), date_to = as.Date("2009-08-31"), convention = "ACT/365"),
+    184 / 365
+  )
+  expect_equal(
+    dcf(date_from = as.Date("2009-02-28"), date_to = as.Date("2009-08-31"), convention = "30/360"),
+    183 / 360
+  )
+})
+
 test_that("ACT less than 30", {
   expect_equal(
     dcf(date_from = as.Date("2007-02-28"), date_to = as.Date("2007-03-05"), convention = "ACT/360"),
