@@ -38,7 +38,8 @@ Supproted interest rate conventions are:
 \describe{
   \item{ACT/365}{Computes actual difference in days, presumes there are 365 days in a year. Default.}
   \item{ACT/360}{Computes actual difference in days, presumes there are 360 days in a year.}
-  \item{30/360}{Assumes that each month has 30 days and the total number of days in the year is 360.}
+  \item{30/360}{Bond basis. Assumes that each month has 30 days and the total number of days in the year is 360.}
+  \item{30E/360}{Eurobond basis. Assumes that each month has 30 days and the total number of days in the year is 360.}
 }
 }
 \examples{

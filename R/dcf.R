@@ -20,18 +20,35 @@ dcf <- function(date_from = Sys.Date(), date_to = Sys.Date(), convention = "ACT/
     t <- as.numeric((date_to - date_from) / 360)
   } # /if act/360
 
-  if (convention == "30/360") {
-    date_to <- ifelse(format(date_to, "%d") == "31" & format(date_from, "%d") %in% c("30", "31"), date_to - 1, date_to)
-    date_from <- ifelse(format(date_from, "%d") == "31", date_from - 1, date_from)
+  if (convention == "30/360") { # ISDA 4.16 (f)
 
-    class(date_from) <- "Date" # ifelse sucks!
-    class(date_to) <- "Date"
+    D1 <- ifelse(format(date_from, "%d") == "31", 30, as.numeric(format(date_from, "%d")))
+    D2 <- ifelse(format(date_to, "%d") == "31" & format(date_from, "%d") %in% c("30", "31"), 30, as.numeric(format(date_to, "%d")))
+    M1 <- as.numeric(format(date_from, "%m"))
+    M2 <- as.numeric(format(date_to, "%m"))
+    Y1 <- as.numeric(format(date_from, "%Y"))
+    Y2 <- as.numeric(format(date_to, "%Y"))
 
-    t <- as.numeric(format(date_to, "%d")) - as.numeric(format(date_from, "%d")) # diff in days
-    t <- t + 30 * (as.numeric(format(date_to, "%m")) - as.numeric(format(date_from, "%m"))) # diff in months
-    t <- t + 360 * (as.numeric(format(date_to, "%Y")) - as.numeric(format(date_from, "%Y"))) # diff in years
+    t <- D2 - D1 # diff in days
+    t <- t + 30 * (M2 - M1) # diff in months
+    t <- t + 360 * (Y2 - Y1) # diff in years
     t <- t / 360
   } # /if 30/360
-   
+
+  if (convention == "30E/360") { # ISDA 4.16 (g)
+
+    D1 <- ifelse(format(date_from, "%d") == "31", 30, as.numeric(format(date_from, "%d")))
+    D2 <- ifelse(format(date_to, "%d") == "31", 30, as.numeric(format(date_to, "%d")))
+    M1 <- as.numeric(format(date_from, "%m"))
+    M2 <- as.numeric(format(date_to, "%m"))
+    Y1 <- as.numeric(format(date_from, "%Y"))
+    Y2 <- as.numeric(format(date_to, "%Y"))
+
+    t <- D2 - D1 # diff in days
+    t <- t + 30 * (M2 - M1) # diff in months
+    t <- t + 360 * (Y2 - Y1) # diff in years
+    t <- t / 360
+  } # /if 30E/360
+
   t # return a value
 }

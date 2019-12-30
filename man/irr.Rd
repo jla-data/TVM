@@ -4,12 +4,20 @@
 \alias{irr}
 \title{IRR – Internal Rate of Return}
 \usage{
-irr(cashflows, dates, convention = "ACT/365", silent = FALSE)
+irr(
+  cashflows,
+  dates,
+  method = "compound",
+  convention = "ACT/365",
+  silent = FALSE
+)
 }
 \arguments{
 \item{cashflows}{Cash flows, as a vector.}
 
 \item{dates}{Value dates for the cashflows vector.}
+
+\item{method}{Compound or simple interest? Default is compound.}
 
 \item{convention}{Interest rate convention; default is "ACT/365".}
 

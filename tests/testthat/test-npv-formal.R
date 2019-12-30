@@ -1,3 +1,4 @@
+context("formal NPV")
 
 test_that("discounting works", {
   expect_equal(
@@ -182,7 +183,7 @@ test_that("type mismatch on input is handled", {
 
   # cashflows is character
   expect_warning(npv(
-    interest = TRUE,
+    interest = 10 / 100,
     dates = as.Date(c("2019-01-01", "2020-01-01")), # 1 year
     cashflows = c("0", "1100")
   ))

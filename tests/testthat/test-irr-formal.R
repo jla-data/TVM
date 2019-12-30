@@ -1,3 +1,5 @@
+context("formal - IRR")
+
 test_that("discounting works", {
   expect_equal(
     irr(
@@ -21,4 +23,20 @@ test_that("vector length mismatch is handled", {
     cashflows = c(1000, 2000, 3000),
     dates = as.Date(c("2019-01-01", "2020-01-01", "2021-01-01"))
   ))
+})
+
+test_that("type mismatch on input is handled", {
+  
+  # dates is character
+  expect_warning(irr(
+    dates = c("2019-01-01", "2020-01-01"), # 1 year
+    cashflows = c(-1000, 1100)
+  ))
+  
+  # cashflows is character
+  expect_warning(irr(
+    dates = as.Date(c("2019-01-01", "2020-01-01")), # 1 year
+    cashflows = c("-1000", "1100")
+  ))
+  
 })

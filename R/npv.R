@@ -7,7 +7,8 @@
 #' \describe{
 #'   \item{ACT/365}{Computes actual difference in days, presumes there are 365 days in a year. Default.}
 #'   \item{ACT/360}{Computes actual difference in days, presumes there are 360 days in a year.}
-#'   \item{30/360}{Assumes that each month has 30 days and the total number of days in the year is 360.}
+#'   \item{30/360}{Bond basis. Assumes that each month has 30 days and the total number of days in the year is 360.}
+#'   \item{30E/360}{Eurobond basis. Assumes that each month has 30 days and the total number of days in the year is 360.}
 #' }
 #'
 #'
@@ -34,16 +35,14 @@
 #' cat(one_thousand)
 npv <- function(interest, cashflows, dates, method = "compound", convention = "ACT/365", silent = FALSE) {
 
-# check input validity ----
-  
+  # check input validity ----
+
   # is method recognized?
-  
-  if(!length(method) == 1 & method %in% c("compound", "simple")) {
+  if (!length(method) == 1 & method %in% c("compound", "simple")) {
     warning("Not a recognized calculation method; check the `method` argument.")
     return(NA)
-    
-  } #/if
-  
+  } # /if
+
   # is silent NULL?
   if (is.null(silent)) {
     warning("NULL is not a recognized argument.")
@@ -74,6 +73,11 @@ npv <- function(interest, cashflows, dates, method = "compound", convention = "A
     return(NA)
   } # /if
 
+  # is cashflows numeric?
+  if (!is.numeric(cashflows)) {
+    if (!silent) warning("Cash flows impossible to determine; check the `cashflows` argument.")
+    return(NA)
+  } # /if
 
   # can interest be recycled?
   if ((length(cashflows) %% length(interest)) != 0) {
@@ -93,21 +97,18 @@ npv <- function(interest, cashflows, dates, method = "compound", convention = "A
   } # /if
 
   # is convention valid?
-  if (!length(convention) == 1 & convention %in% c("ACT/360", "ACT/365", "30/360")) {
+  if (!length(convention) == 1 & convention %in% c("ACT/360", "ACT/365", "30/360", "30E/360")) {
     if (!silent) warning("A valid interest rate convention is required; consider ACT/365 if uncertain")
     return(NA)
   } # /if
 
-
-# inputs are OK, real work starts here :) ------------------------------
- 
+  # inputs are OK, real work starts here :) ------------------------------
 
   t <- dcf(date_to = dates, date_from = dates[1], convention = convention)
 
-  
   if (method == "compound") {
     sum(cashflows / (1 + interest)^t)
-  } else {# not compound = simple (two valid options)
+  } else { # not compound = simple (two valid options)
     sum(cashflows / (1 + interest * t))
   } # /if method
 }
