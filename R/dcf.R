@@ -1,16 +1,30 @@
 #' DCF – Day Count Fraction
+#' 
+#' Day Count Fraction - difference in days divided by days per year
+#'  
+#' Implemented according to 2006 ISDA Definitions.
+#' 
+#' Currently implemented conventions are:
+#' 
+#' \describe{
+#'   \item{ACT/365}{Actual / 365 (Fixed) - ISDA Definitions 4.16 (d)}
+#'   \item{ACT/360}{Actual / 360 - ISDA Definitions 4.16 (e)}
+#'   \item{30/360}{Bond Basis - ISDA Definitions 4.16 (f)}
+#'   \item{30E/360}{Eurobond Basis - ISDA Definitions 4.16 (g)}
+#'   }
 #'
 #' @param date_from Start date (or a vector of dates)
 #' @param date_to End date (or a vector of dates)
 #'
 #' @inheritParams npv
 #'
-#' @return Day Count Fraction - difference in days divided by days per year
+#' @return A fraction of year
 #'
 #' @export
 #'
 #' @examples
 #' dcf(as.Date("2019-01-01"), as.Date("2019-01-31"), convention = "30/360")
+#' 
 dcf <- function(date_from = Sys.Date(), date_to = Sys.Date(), convention = "ACT/365", silent = FALSE) {
   if (convention == "ACT/365") {
     t <- as.numeric((date_to - date_from) / 365)

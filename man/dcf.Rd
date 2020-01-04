@@ -21,11 +21,24 @@ dcf(
 \item{silent}{Should warning messages be suppressed? Default is no.}
 }
 \value{
-Day Count Fraction - difference in days divided by days per year
+A fraction of year
 }
 \description{
-DCF – Day Count Fraction
+Day Count Fraction - difference in days divided by days per year
+ 
+Implemented according to 2006 ISDA Definitions.
+}
+\details{
+Currently implemented conventions are:
+
+\describe{
+  \item{ACT/365}{Actual / 365 (Fixed) - ISDA Definitions 4.16 (d)}
+  \item{ACT/360}{Actual / 360 - ISDA Definitions 4.16 (e)}
+  \item{30/360}{Bond Basis - ISDA Definitions 4.16 (f)}
+  \item{30E/360}{Eurobond Basis - ISDA Definitions 4.16 (g)}
+  }
 }
 \examples{
 dcf(as.Date("2019-01-01"), as.Date("2019-01-31"), convention = "30/360")
+
 }

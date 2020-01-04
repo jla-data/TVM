@@ -33,15 +33,6 @@ Net present value of future cash flows
 Discounted value of future cash flows; the date of the first cash flow is
 considered as origin.
 }
-\details{
-Supproted interest rate conventions are:
-\describe{
-  \item{ACT/365}{Computes actual difference in days, presumes there are 365 days in a year. Default.}
-  \item{ACT/360}{Computes actual difference in days, presumes there are 360 days in a year.}
-  \item{30/360}{Bond basis. Assumes that each month has 30 days and the total number of days in the year is 360.}
-  \item{30E/360}{Eurobond basis. Assumes that each month has 30 days and the total number of days in the year is 360.}
-}
-}
 \examples{
 one_thousand <- npv(
   interest = 10 / 100, # i.e. 10\% p.a.
@@ -52,5 +43,5 @@ one_thousand <- npv(
 cat(one_thousand)
 }
 \seealso{
-irr
+dcf
 }

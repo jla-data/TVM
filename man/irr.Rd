@@ -24,7 +24,7 @@ irr(
 \item{silent}{Should warning messages be suppressed? Default is no.}
 }
 \value{
-Internal Rate of Return - as a fraction, per annum
+IRR as a fraction, per annum basis; recognized interval is -50% – +150% p.a.
 }
 \description{
 Rate at which all cashflows will be discounted to exactly zero.
@@ -36,5 +36,5 @@ irr(
 )
 }
 \seealso{
-npv
+npv, dcf
 }

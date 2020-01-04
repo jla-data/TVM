@@ -4,9 +4,9 @@
 #'
 #' @inheritParams npv
 #'
-#' @return Internal Rate of Return - as a fraction, per annum
+#' @return IRR as a fraction, per annum basis; recognized interval is -50% – +150% p.a.
 #'
-#' @seealso npv
+#' @seealso npv, dcf
 #'
 #' @export
 #'
@@ -60,7 +60,7 @@ irr <- function(cashflows, dates, method = "compound", convention = "ACT/365", s
   # let the uniroot begin! ----
 
   result <- uniroot(
-    f = npv, interval = c(0, 1), tol = 1e-7,
+    f = npv, interval = c(-.5, 1.5), tol = 1e-7,
     cashflows = cashflows,
     dates = dates,
     convention = convention,

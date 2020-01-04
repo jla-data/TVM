@@ -1,4 +1,4 @@
-context("formal - IRR")
+context("formal IRR")
 
 test_that("discounting works", {
   expect_equal(
