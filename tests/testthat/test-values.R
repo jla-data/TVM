@@ -120,13 +120,13 @@ context("values NPV")
 test_that("1 period simple = compound", {
   expect_equal(
     npv(
-      interest = 10 / 100, # i.e. 10% p.a.
+      irate = 10 / 100, # i.e. 10% p.a.
       dates = as.Date(c("2019-01-01", "2020-01-01")), # 1 year
       method = "compound",
       cashflows = c(0, 1100)
     ),
     npv(
-      interest = 10 / 100, # i.e. 10% p.a.
+      irate = 10 / 100, # i.e. 10% p.a.
       dates = as.Date(c("2019-01-01", "2020-01-01")), # 1 year
       method = "simple",
       cashflows = c(0, 1100)

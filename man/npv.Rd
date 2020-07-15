@@ -5,7 +5,7 @@
 \title{NPV – Net Present Value}
 \usage{
 npv(
-  interest,
+  irate,
   cashflows,
   dates,
   method = "compound",
@@ -14,7 +14,7 @@ npv(
 )
 }
 \arguments{
-\item{interest}{Interest rate per annum. Either a scalar value, or vector.}
+\item{irate}{Interest rate per annum. Either a scalar value, or vector.}
 
 \item{cashflows}{Cash flows, as a vector.}
 
@@ -35,12 +35,13 @@ considered as origin.
 }
 \examples{
 one_thousand <- npv(
-  interest = 10 / 100, # i.e. 10\% p.a.
+  irate = 10 / 100, # i.e. 10\% p.a.
   dates = as.Date(c("2019-01-01", "2020-01-01")), # i.e. one year
   cashflows = c(0, 1100)
 )
 
 cat(one_thousand)
+
 }
 \seealso{
 dcf

@@ -24,7 +24,7 @@ irr(
 \item{silent}{Should warning messages be suppressed? Default is no.}
 }
 \value{
-IRR as a fraction, per annum basis; recognized interval is -50% – +150% p.a.
+IRR as a fraction, per annum basis; recognized interval is -50\% – +150\% p.a.
 }
 \description{
 Rate at which all cashflows will be discounted to exactly zero.
@@ -34,6 +34,7 @@ irr(
   dates = as.Date(c("2019-01-01", "2020-01-01")),
   cashflows = c(-1000, 1100)
 )
+
 }
 \seealso{
 npv, dcf

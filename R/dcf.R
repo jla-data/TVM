@@ -25,6 +25,7 @@
 #' @examples
 #' dcf(as.Date("2019-01-01"), as.Date("2019-01-31"), convention = "30/360")
 #' 
+ 
 dcf <- function(date_from = Sys.Date(), date_to = Sys.Date(), convention = "ACT/365", silent = FALSE) {
   if (convention == "ACT/365") {
     t <- as.numeric((date_to - date_from) / 365)

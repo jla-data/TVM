@@ -4,7 +4,7 @@
 #'
 #' @inheritParams npv
 #'
-#' @return IRR as a fraction, per annum basis; recognized interval is -50% – +150% p.a.
+#' @return IRR as a fraction, per annum basis; recognized interval is -50\% – +150\% p.a.
 #'
 #' @seealso npv, dcf
 #'
@@ -17,6 +17,8 @@
 #'   dates = as.Date(c("2019-01-01", "2020-01-01")),
 #'   cashflows = c(-1000, 1100)
 #' )
+#'
+
 irr <- function(cashflows, dates, method = "compound", convention = "ACT/365", silent = FALSE) {
 
   # check input validity ----

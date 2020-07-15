@@ -4,7 +4,7 @@
 #' considered as origin.
 #'
 #'
-#' @param interest Interest rate per annum. Either a scalar value, or vector.
+#' @param irate Interest rate per annum. Either a scalar value, or vector.
 #' @param cashflows Cash flows, as a vector.
 #' @param dates Value dates for the cashflows vector.
 #' @param method Compound or simple interest? Default is compound.
@@ -19,13 +19,15 @@
 #'
 #' @examples
 #' one_thousand <- npv(
-#'   interest = 10 / 100, # i.e. 10% p.a.
+#'   irate = 10 / 100, # i.e. 10% p.a.
 #'   dates = as.Date(c("2019-01-01", "2020-01-01")), # i.e. one year
 #'   cashflows = c(0, 1100)
 #' )
 #'
 #' cat(one_thousand)
-npv <- function(interest, cashflows, dates, method = "compound", convention = "ACT/365", silent = FALSE) {
+#' 
+
+npv <- function(irate, cashflows, dates, method = "compound", convention = "ACT/365", silent = FALSE) {
 
   # check input validity ----
 
@@ -42,7 +44,7 @@ npv <- function(interest, cashflows, dates, method = "compound", convention = "A
   } # /if
 
   # is any other argument null?
-  if (any(sapply(list(interest, cashflows, dates, convention), is.null))) {
+  if (any(sapply(list(irate, cashflows, dates, convention), is.null))) {
     if (!silent) warning("NULL is not a recognized argument.")
     return(NA)
   } # /if
@@ -60,8 +62,8 @@ npv <- function(interest, cashflows, dates, method = "compound", convention = "A
   } # /if
 
   # is interest numeric?
-  if (!is.numeric(interest)) {
-    if (!silent) warning("Impossible to determine interest rate; check the `interest` argument.")
+  if (!is.numeric(irate)) {
+    if (!silent) warning("Impossible to determine interest rate; check the `irate` argument.")
     return(NA)
   } # /if
 
@@ -72,13 +74,13 @@ npv <- function(interest, cashflows, dates, method = "compound", convention = "A
   } # /if
 
   # can interest be recycled?
-  if ((length(cashflows) %% length(interest)) != 0) {
-    if (!silent) warning("Impossible to determine discount rate; check the `interest` argument.")
+  if ((length(cashflows) %% length(irate)) != 0) {
+    if (!silent) warning("Impossible to determine discount rate; check the `irate` argument.")
     return(NA)
   } # /if
 
   # is interest vector or scalar?
-  if (length(interest) > 1) {
+  if (length(irate) > 1) {
     if (!silent) message("Multiple interest rates detected; will be applied as vector (recycled if necessary).")
   } # /if
 
@@ -99,8 +101,8 @@ npv <- function(interest, cashflows, dates, method = "compound", convention = "A
   t <- dcf(date_to = dates, date_from = dates[1], convention = convention)
 
   if (method == "compound") {
-    sum(cashflows / (1 + interest)^t)
+    sum(cashflows / (1 + irate)^t)
   } else { # not compound = simple (two valid options)
-    sum(cashflows / (1 + interest * t))
+    sum(cashflows / (1 + irate * t))
   } # /if method
 }
