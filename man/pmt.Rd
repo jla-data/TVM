@@ -10,13 +10,13 @@ builds heavily on \url{https://gist.github.com/raadk/dcd503815bbb271484ff}
 pmt(irate, nper, pv, fv = 0, type = "immediate", silent = FALSE)
 }
 \arguments{
-\item{irate}{Interest rate per period (see nper)}
+\item{irate}{Interest rate per period (see nper) as fraction (i.e. 5\% is .05 or 1/20)}
 
-\item{nper}{Number of interest periods}
+\item{nper}{Number of interest periods as integer (no fractions)}
 
-\item{pv}{present value}
+\item{pv}{Present value}
 
-\item{fv}{future value (default is zero)}
+\item{fv}{Future value (default is zero)}
 
 \item{type}{type of the annuity: due or immediate?}
 
@@ -28,6 +28,12 @@ annuity payment
 \description{
 Calculation of annuity payment.
 }
+\details{
+The function expects a single interest rate; number of periods, present and 
+future values can be vectors, and in such case a vector would be returned.
+}
 \examples{
+pmt(.1, 5, -1000) # a loan of 1000 units to be repaid in 5 periods at 10\\% per period
+
 
 }

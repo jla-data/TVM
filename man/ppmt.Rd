@@ -10,15 +10,15 @@ builds heavily on \url{https://gist.github.com/raadk/dcd503815bbb271484ff}
 ppmt(irate, per, nper, pv, fv = 0, type = "immediate", silent = FALSE)
 }
 \arguments{
-\item{irate}{Interest rate per period (see nper)}
+\item{irate}{Interest rate per period (see nper) as fraction (i.e. 5\% is .05 or 1/20)}
 
 \item{per}{period of interest}
 
-\item{nper}{Number of interest periods}
+\item{nper}{Number of interest periods as integer (no fractions)}
 
-\item{pv}{present value}
+\item{pv}{Present value}
 
-\item{fv}{future value (default is zero)}
+\item{fv}{Future value (default is zero)}
 
 \item{type}{type of the annuity: due or immediate?}
 
@@ -31,5 +31,8 @@ principal repayment
 Calculation of principal repayment portion of an anuity payment.
 }
 \examples{
+ppmt(.1, 1, 1, -1000) # a single period >> entire principal is repaid immediately
+
+ppmt(.1, 1:5, 5, -1000) # see five payments of five; the amount of principal goes up
 
 }

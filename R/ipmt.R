@@ -11,6 +11,9 @@
 #' @source builds heavily on \url{https://gist.github.com/raadk/dcd503815bbb271484ff}
 #'
 #' @examples
+#' ipmt(.1, 1, 1, -1000) # a single period at 10\% interest >> interest = 1/10 of principal
+#' 
+#' ipmt(.1, 1:5, 5, -1000) # see five payments of five; the amount of interest goes down
 #' 
 ipmt <- function(irate, per, nper, pv, fv = 0, type = "immediate", silent = FALSE) {
    
@@ -26,6 +29,11 @@ ipmt <- function(irate, per, nper, pv, fv = 0, type = "immediate", silent = FALS
       return(NA)
    } # /if
    
+   # is per compatible with nper?
+   if (any(max(per) > max(nper), per <= 0)) {
+      if (!silent) warning("Period must be greater than zero and less than total periods; check `per` and `nper` arguments.")
+      return(NA)
+   }
    
    result <- -(((1+irate)^(per-1)) * (pv*irate + pmt(irate, nper, pv, fv=0, type=type)) - pmt(irate, nper, pv, fv=0, type=type))
    
