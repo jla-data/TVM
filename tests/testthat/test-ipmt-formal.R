@@ -1,4 +1,3 @@
-context("formal IPMT")
 
 test_that("interest works", {
    expect_equal(

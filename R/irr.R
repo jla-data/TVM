@@ -62,7 +62,7 @@ irr <- function(cashflows, dates, method = "compound", convention = "ACT/365", s
   # let the uniroot begin! ----
 
   result <- uniroot(
-    f = npv, interval = c(-.5, 1.5), tol = 1e-7,
+    f = npv, interval = c(-.5, 1.5), tol = 1e-10,
     cashflows = cashflows,
     dates = dates,
     convention = convention,

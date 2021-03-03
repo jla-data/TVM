@@ -1,4 +1,4 @@
 library(testthat)
-library(vctrs)
+library(TVM)
 
 test_check("TVM")

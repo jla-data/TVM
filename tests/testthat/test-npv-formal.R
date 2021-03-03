@@ -1,5 +1,3 @@
-context("formal NPV")
-
 test_that("discounting works", {
   expect_equal(
     npv(

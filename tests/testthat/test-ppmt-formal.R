@@ -1,5 +1,3 @@
-context("formal PPMT")
-
 test_that("interest works", {
    expect_equal(
       ppmt(

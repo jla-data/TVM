@@ -13,5 +13,7 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 Suggests: 
-   vctrs,
-   testthat (>= 2.1.0)
+    vctrs,
+    testthat (>= 3.0.0),
+    covr
+Config/testthat/edition: 3

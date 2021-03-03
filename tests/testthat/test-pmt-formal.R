@@ -1,5 +1,3 @@
-context("formal PMT")
-
 test_that("a sum is a sum", {
    expect_equal(
       pmt(

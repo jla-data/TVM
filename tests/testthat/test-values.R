@@ -1,4 +1,3 @@
-context("values DCF")
 
 # dates from https://www.isda.org/2008/12/22/30-360-day-count-conventions/
 test_that("easy date", {
@@ -115,7 +114,6 @@ test_that("february to february, leap year", {
   )
 })
 
-context("values NPV")
 
 test_that("1 period simple = compound", {
   expect_equal(
@@ -133,8 +131,6 @@ test_that("1 period simple = compound", {
     )
   )
 })
-
-context("values IRR")
 
 test_that("1 period simple = compound", {
   expect_equal(
