@@ -1,7 +1,16 @@
 # TVM - Time Value of Money
 
-Fifty shades of cash flow discounting. 
+Fifty shades of cash flow discounting.
 
-Yet another TVM implementation, this time with finer control over timing of cash flows and interest rate conventions used.
+Currently implemented functions (loosely inspired by MS Excel, but vectorized):
 
-At present very much a work in progress
+-   **dcf** – Day Count Fraction
+-   **irr** – Internal Rate of Return
+-   **npv** – Net Present Value
+-   **pmt** – Annuity Payment
+-   **ipmt** – interest part of an Annuity Paymnet
+-   **ppmt** – principal part of an Annuity Payment
+
+With hopefully more to come, but not very actively developed at present.
+
+Implemented with minimal dependencies, mostly in base R.
