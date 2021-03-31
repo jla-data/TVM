@@ -13,7 +13,7 @@ Currently implemented functions (loosely inspired by MS Excel, but vectorized):
 -   **irr** – Internal Rate of Return
 -   **npv** – Net Present Value
 -   **pmt** – Annuity Payment
--   **ipmt** – interest part of an Annuity Paymnet
+-   **ipmt** – interest part of an Annuity Payment
 -   **ppmt** – principal part of an Annuity Payment
 
 With hopefully more to come, but not very actively developed at present.
